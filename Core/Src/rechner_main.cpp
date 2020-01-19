@@ -18,11 +18,12 @@ int rechner_main();
 
 int rechner_main()
 {
-  rechner::IO::GPIO::port gpioa(rechner::SYS::gpio_a_base);
+  rechner::IO::GPIO::port gpioa(rechner::IO::GPIO_A);
   volatile size_t gpio_size = sizeof(rechner::IO::GPIO::port);
   volatile size_t reg_size = sizeof(rechner::SYS::reg);
   volatile size_t gpio_a_size = sizeof(gpioa);
-  //rechner::SYS::rcc::enable_clock_gpio_a();
+  rechner::SYS::rcc::enable_clock_gpio_a();
+  gpioa.configure_pin();
   HAL_Delay(10);
   for(;;)
   {
@@ -37,8 +38,6 @@ int rechner_main()
     gpioa.toggle_pin(rechner::IO::GPIO::PIN_5);
     HAL_Delay(100);
     gpioa.toggle_pin(rechner::IO::GPIO::PIN_5);
-    HAL_Delay(100);
-    gpioa.configure_pin();
     HAL_Delay(100);
   }
 }

@@ -19,43 +19,47 @@ namespace rechner
         bsrr = std::make_unique<rechner::SYS::reg>(base_address + UINT32_C(0x18));
         afrl = std::make_unique<rechner::SYS::reg>(base_address + UINT32_C(0x20));
         afrh = std::make_unique<rechner::SYS::reg>(base_address + UINT32_C(0x24));
-      };
+      }
 
-      void port::set_pin(std::uint8_t pin_number)
+      void
+      port::set_pin(gpio_pin_number_t pin_number)
       {
         bsrr->set_bit(pin_number);
         pin_state = true;
-      };
+      }
 
-      void port::reset_pin(std::uint8_t pin_number)
+      void
+      port::reset_pin(gpio_pin_number_t pin_number)
       {
         bsrr->set_bit(UINT8_C(pin_number + 16));
         pin_state = false;
-      };
+      }
 
-      void port::toggle_pin(std::uint8_t pin_number)
+      void
+      port::toggle_pin(gpio_pin_number_t pin_number)
       {
         if (pin_state)
           reset_pin(pin_number);
         else
           set_pin(pin_number);
         
-        return;
-        
+        return; 
       }
 
-      bool port::read_pin(std::uint8_t pin_number)
+      bool
+      port::read_pin(gpio_pin_number_t pin_number)
       {
-        return false;
-      };
+        return (idr->get() & static_cast<std::uint32_t>(1 << pin_number));
+      }
 
-      void port::configure_pin()
+      void
+      port::configure_pin()
       {
         pin_configuration_t pin_config;
-        pin_config.pin = rechner::IO::GPIO::PIN_7;
+        pin_config.pin = rechner::IO::GPIO::PIN_5;
         pin_config.mode = rechner::IO::GPIO::PIN_MODE_OUTPUT;
         pin_config.pull_up_down = rechner::IO::GPIO::PIN_NO_PULL_UP_DOWN;
-        pin_config.speed = rechner::IO::GPIO::PIN_TYPE_SPEED_HIGH;
+        pin_config.speed = rechner::IO::GPIO::PIN_TYPE_SPEED_LOW;
         pin_config.type = rechner::IO::GPIO::PIN_TYPE_PUSH_PULL;
         
         std::uint32_t temp_mode_r = moder->get();
@@ -74,8 +78,13 @@ namespace rechner
 
         std::uint32_t temp_pullupdown_r = pupdr->get();
         temp_pullupdown_r = (pin_config.pull_up_down << (pin_config.pin * 2));
+        std::uint32_t temp_pullupdown_test = temp_pullupdown_r;
 
-      };
+        moder->set(temp_mode_r);
+        otyper->set(temp_type_r);
+        ospeedr->set(temp_speed_r);
+        pupdr->set(temp_pullupdown_r);
+      }
     }
   }
 }

@@ -1,12 +1,22 @@
 #pragma once
 
 #include <rechner_reg.h>
+#include <rechner_register_map.h>
 #include <memory>
 
 namespace rechner
 {
   namespace IO
   {
+    constexpr static const std::uint32_t GPIO_A = rechner::SYS::gpio_a_base;
+    constexpr static const std::uint32_t GPIO_B = rechner::SYS::gpio_b_base;
+    constexpr static const std::uint32_t GPIO_C = rechner::SYS::gpio_c_base;
+    constexpr static const std::uint32_t GPIO_D = rechner::SYS::gpio_d_base;
+    constexpr static const std::uint32_t GPIO_E = rechner::SYS::gpio_e_base;
+    constexpr static const std::uint32_t GPIO_F = rechner::SYS::gpio_f_base;
+    constexpr static const std::uint32_t GPIO_G = rechner::SYS::gpio_g_base;
+    constexpr static const std::uint32_t GPIO_H = rechner::SYS::gpio_h_base;
+
     namespace GPIO
     {
       typedef std::uint8_t gpio_pin_number_t;
@@ -63,10 +73,10 @@ namespace rechner
       {
         public:
         port(std::uint32_t base_address);
-        void set_pin(std::uint8_t pin_number);
-        void reset_pin(std::uint8_t pin_number);
-        bool read_pin(std::uint8_t pin_number);
-        void toggle_pin(std::uint8_t pin_number);
+        void set_pin(gpio_pin_number_t pin_number);
+        void reset_pin(gpio_pin_number_t pin_number);
+        bool read_pin(gpio_pin_number_t pin_number);
+        void toggle_pin(gpio_pin_number_t pin_number);
         void configure_pin();
 
         private:

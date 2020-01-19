@@ -12,8 +12,8 @@ namespace rechner
       rcc();
       static void enable_clock_gpio_a()
       {
-        SYS::reg rcc_ahb1enr(SYS::rcc_base + UINT32_C(0x30));
-        rcc_ahb1enr.set_bit(UINT8_C(0));
+        reg rcc_ahb1enr(rcc_base + UINT32_C(0x30));
+        rcc_ahb1enr.set_bit(BIT_0);
       }
     };
   }
