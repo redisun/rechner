@@ -1,0 +1,9 @@
+Debug/
+build/
+bin/
+.settings/
+*.launch
+*.ioc
+*.project
+*.mxproject
+*.cproject

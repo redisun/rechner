@@ -1,0 +1,8 @@
+<? xml version="1.0" encoding="utf-8"?>
+<AutoVisualizer xmlns="https://schemas.microsoft.com/vstudio/debugger/natvis/2010">
+  <Type Name="port">
+    <DisplayString>auto_ptr {*_Myptr}</DisplayString>
+    <Expand>
+      <ExpandedItem>_Myptr</ExpandedItem>
+    </Expand>
+  </Type>

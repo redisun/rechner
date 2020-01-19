@@ -1,0 +1,39 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"**/.git": true,
+			"**/.svn": true,
+			"**/.hg": true,
+			"**/CVS": true,
+			"**/.DS_Store": true,
+			"**/.cproject": true,
+			"**/.mxproject": true,
+			"**/.project": true,
+			"**/*.ioc": true,
+			"**/.settings": true,
+			"**/cpp_hal_test Debug.launch": true
+		},
+		"C_Cpp.default.includePath": [
+			"Core/Inc",
+			"Drivers/CMSIS/Include",
+			"Drivers/CMSIS/Device/ST/STM32F4xx/Include",
+			"Drivers/STM32F4xx_HAL_Driver/Inc",
+			"Drivers/STM32F4xx_HAL_Driver/Inc/Legacy"
+		],
+		"C_Cpp.default.browse.path": [
+			"Core/Inc",
+			"Drivers/CMSIS/Include",
+			"Drivers/CMSIS/Device/ST/STM32F4xx/Include",
+			"Drivers/STM32F4xx_HAL_Driver/Inc",
+			"Drivers/STM32F4xx_HAL_Driver/Inc/Legacy",
+			"Core/Src",
+			"Drivers/STM32F4xx_HAL_Driver/Src"
+		],
+		"C_Cpp.default.browse.limitSymbolsToIncludedHeaders": true
+	}
+}
