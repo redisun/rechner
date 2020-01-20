@@ -89,7 +89,7 @@ int main(void)
 
   /* Initialize all configured peripherals */
   //__HAL_RCC_GPIOA_CLK_ENABLE();
-  MX_GPIO_Init();
+  //MX_GPIO_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
   rechner_main();
