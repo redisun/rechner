@@ -14,8 +14,9 @@ args = parser.parse_args()
 print(args)
 
 ser = serial.Serial('/dev/ttyACM0', 115200)
-print(ser.name)
 
+print("Writing parameters to pid controller on port:", ser.name)
+print("Kp: ", args.proportional, " Ki: ", args.integral, " Kd: ", args.derivative)
 size = 15
 arr = bytearray(size)
 ser.write(size.to_bytes(1, 'little'))
